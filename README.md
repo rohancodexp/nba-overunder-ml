@@ -1,6 +1,6 @@
 # The Bank Is Open: Predicting NBA Over/Under Totals with Machine Learning
 
-UE24CS352A Machine Learning, mini-project (Team 3). Predict the **total points scored in an NBA game** and compare the
+UE24CS352A Machine Learning, mini-project. Predict the **total points scored in an NBA game** and compare the
 prediction with the sportsbook Over/Under line. Reference study: *The Bank Is Open: AI in Sports Gambling* (Bucquet and Sarukkai, Stanford CS229).
 
 Models: Random Forest (baseline), Collaborative Filtering via masked SVD/ALS, fully-connected Neural Network, and an LSTM
