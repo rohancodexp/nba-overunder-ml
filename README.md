@@ -86,10 +86,3 @@ report/writeup.pdf    PDF write-up           slides/deck.pptx   review deck
 team.json             names, SRNs, repo URL (edit before building report/slides)
 ```
 
-## 8. Team contributions
-Fill in before submission (individual contribution is graded):
-
-| Member | Contribution |
-|---|---|
-| Rohan | ... |
-| <teammate> | ... |
