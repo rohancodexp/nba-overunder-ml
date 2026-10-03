@@ -4,7 +4,7 @@ import pandas as pd
 from src.data_synth import generate
 from src.data_loader import load_all
 from src.features import build
-from src.evaluate import ou_metrics, BREAK_EVEN
+from src.evaluate import ou_metrics, edge_table, BREAK_EVEN
 from src import config as C
 
 
@@ -41,3 +41,14 @@ def test_ou_metrics_excludes_pushes_and_counts_hits():
     r = ou_metrics(np.array([210, 190, 205]), np.array([200, 200, 205]), np.array([215, 205, 205]))
     assert r["n_bets"] == 2 and r["accuracy"] == 0.5          # over hit, under missed, push dropped
     assert abs(BREAK_EVEN - 0.5238) < 1e-3
+
+def test_edge_table_filters_by_prediction_edge():
+    pred = np.array([201, 205, 208])
+    line = np.array([200, 200, 200])
+    actual = np.array([210, 190, 205])
+
+    rows = edge_table(pred, line, actual, thresholds=(0, 4, 7))
+
+    assert [r["n_bets"] for r in rows] == [3, 2, 1]
+    assert rows[1]["min_edge"] == 4
+    assert rows[2]["min_edge"] == 7
