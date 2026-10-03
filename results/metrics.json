@@ -1,0 +1,328 @@
+{
+  "data_source": "real",
+  "quick_mode": false,
+  "train_seasons": [
+    "2007-08",
+    "2008-09",
+    "2009-10",
+    "2010-11",
+    "2011-12",
+    "2012-13",
+    "2013-14",
+    "2014-15",
+    "2015-16"
+  ],
+  "val_seasons": [
+    "2016-17"
+  ],
+  "test_seasons": [
+    "2017-18"
+  ],
+  "sizes": {
+    "train": 11532,
+    "val": 1309,
+    "test": 1311
+  },
+  "n_features": {
+    "numeric": 46,
+    "team_onehot": 60
+  },
+  "best_params": {
+    "rf": {
+      "n_estimators": 400,
+      "max_depth": 12,
+      "min_samples_leaf": 10,
+      "max_features": 0.3
+    },
+    "cf": {
+      "n_factors": 10,
+      "horizon_days": 3,
+      "reg": 3.0
+    },
+    "nn": {
+      "hidden": [
+        500,
+        100,
+        20
+      ],
+      "lr": 0.003,
+      "alpha": 0.1,
+      "batch_size": 32
+    },
+    "lstm": {
+      "hidden": 32,
+      "lr": 0.001,
+      "dropout": 0.4,
+      "weight_decay": 0.001,
+      "batch_size": 64
+    }
+  },
+  "best_train_start": "2007-08",
+  "break_even": 0.5238095238095238,
+  "models": {
+    "Random Forest (baseline)": {
+      "train": {
+        "mse": 214.38476214836035,
+        "rmse": 14.641883831951418,
+        "mae": 11.43072797649091
+      },
+      "val": {
+        "mse": 328.8665487894271,
+        "rmse": 18.134678072395637,
+        "mae": 14.441069132710863
+      },
+      "test": {
+        "mse": 350.51156628930903,
+        "rmse": 18.721954125820012,
+        "mae": 15.092396770655597
+      },
+      "ou": {
+        "n_bets": 1293,
+        "accuracy": 0.5003866976024749,
+        "ci95": 0.0272537760788099,
+        "roi_per_unit": -0.04471630457709341,
+        "break_even": 0.5238095238095238,
+        "beats_break_even": false
+      },
+      "edge_table": [
+        {
+          "min_edge": 0,
+          "n_bets": 1293,
+          "accuracy": 0.5003866976024749,
+          "roi_per_unit": -0.04471630457709341
+        },
+        {
+          "min_edge": 1,
+          "n_bets": 1130,
+          "accuracy": 0.5008849557522124,
+          "roi_per_unit": -0.04376508447304911
+        },
+        {
+          "min_edge": 2,
+          "n_bets": 955,
+          "accuracy": 0.4963350785340314,
+          "roi_per_unit": -0.05245121370775818
+        },
+        {
+          "min_edge": 3,
+          "n_bets": 797,
+          "accuracy": 0.5006273525721455,
+          "roi_per_unit": -0.04425687236226766
+        },
+        {
+          "min_edge": 4,
+          "n_bets": 668,
+          "accuracy": 0.5,
+          "roi_per_unit": -0.04545454545454547
+        },
+        {
+          "min_edge": 6,
+          "n_bets": 427,
+          "accuracy": 0.5058548009367682,
+          "roi_per_unit": -0.03427719821162445
+        }
+      ]
+    },
+    "Collaborative Filtering (SVD)": {
+      "train": {
+        "mse": 411.20795269600904,
+        "rmse": 20.278263059148067,
+        "mae": 15.991183369814893
+      },
+      "val": {
+        "mse": 416.46696904184677,
+        "rmse": 20.407522364114826,
+        "mae": 16.406786501435963
+      },
+      "test": {
+        "mse": 403.5727442091334,
+        "rmse": 20.089120045664853,
+        "mae": 16.10095566398866
+      },
+      "ou": {
+        "n_bets": 1293,
+        "accuracy": 0.4988399071925754,
+        "ci95": 0.027253710872382802,
+        "roi_per_unit": -0.04766926808690147,
+        "break_even": 0.5238095238095238,
+        "beats_break_even": false
+      },
+      "edge_table": [
+        {
+          "min_edge": 0,
+          "n_bets": 1293,
+          "accuracy": 0.4988399071925754,
+          "roi_per_unit": -0.04766926808690147
+        },
+        {
+          "min_edge": 1,
+          "n_bets": 1192,
+          "accuracy": 0.5,
+          "roi_per_unit": -0.04545454545454547
+        },
+        {
+          "min_edge": 2,
+          "n_bets": 1090,
+          "accuracy": 0.4972477064220184,
+          "roi_per_unit": -0.05070892410341943
+        },
+        {
+          "min_edge": 3,
+          "n_bets": 983,
+          "accuracy": 0.5025432349949135,
+          "roi_per_unit": -0.040599278646074266
+        },
+        {
+          "min_edge": 4,
+          "n_bets": 870,
+          "accuracy": 0.5080459770114942,
+          "roi_per_unit": -0.03009404388714737
+        },
+        {
+          "min_edge": 6,
+          "n_bets": 682,
+          "accuracy": 0.5219941348973607,
+          "roi_per_unit": -0.0034657424686750926
+        }
+      ]
+    },
+    "Neural Network": {
+      "train": {
+        "mse": 308.76652728593047,
+        "rmse": 17.57175367702184,
+        "mae": 13.831265309282008
+      },
+      "val": {
+        "mse": 322.785749403483,
+        "rmse": 17.96623915580228,
+        "mae": 14.276699330402742
+      },
+      "test": {
+        "mse": 354.5187604187781,
+        "rmse": 18.82866857796318,
+        "mae": 15.106490033658453
+      },
+      "ou": {
+        "n_bets": 1293,
+        "accuracy": 0.4911059551430781,
+        "ci95": 0.027249472119925934,
+        "roi_per_unit": -0.06243408563594183,
+        "break_even": 0.5238095238095238,
+        "beats_break_even": false
+      },
+      "edge_table": [
+        {
+          "min_edge": 0,
+          "n_bets": 1293,
+          "accuracy": 0.4911059551430781,
+          "roi_per_unit": -0.06243408563594183
+        },
+        {
+          "min_edge": 1,
+          "n_bets": 1103,
+          "accuracy": 0.4814143245693563,
+          "roi_per_unit": -0.08093628945850162
+        },
+        {
+          "min_edge": 2,
+          "n_bets": 897,
+          "accuracy": 0.48494983277591974,
+          "roi_per_unit": -0.07418668288233504
+        },
+        {
+          "min_edge": 3,
+          "n_bets": 731,
+          "accuracy": 0.4911080711354309,
+          "roi_per_unit": -0.06243004601417729
+        },
+        {
+          "min_edge": 4,
+          "n_bets": 576,
+          "accuracy": 0.4965277777777778,
+          "roi_per_unit": -0.052083333333333315
+        },
+        {
+          "min_edge": 6,
+          "n_bets": 322,
+          "accuracy": 0.484472049689441,
+          "roi_per_unit": -0.07509881422924897
+        }
+      ]
+    },
+    "LSTM": {
+      "train": {
+        "mse": 321.1553157574956,
+        "rmse": 17.920806783108166,
+        "mae": 14.087948236271373
+      },
+      "val": {
+        "mse": 322.9152274841946,
+        "rmse": 17.96984216636848,
+        "mae": 14.165512037341585
+      },
+      "test": {
+        "mse": 344.49361215976603,
+        "rmse": 18.56053911285354,
+        "mae": 14.906036690573444
+      },
+      "ou": {
+        "n_bets": 1293,
+        "accuracy": 0.49265274555297756,
+        "ci95": 0.027250841635123427,
+        "roi_per_unit": -0.05948112212613377,
+        "break_even": 0.5238095238095238,
+        "beats_break_even": false
+      },
+      "edge_table": [
+        {
+          "min_edge": 0,
+          "n_bets": 1293,
+          "accuracy": 0.49265274555297756,
+          "roi_per_unit": -0.05948112212613377
+        },
+        {
+          "min_edge": 1,
+          "n_bets": 1090,
+          "accuracy": 0.4972477064220184,
+          "roi_per_unit": -0.05070892410341943
+        },
+        {
+          "min_edge": 2,
+          "n_bets": 869,
+          "accuracy": 0.5005753739930955,
+          "roi_per_unit": -0.044356104194999524
+        },
+        {
+          "min_edge": 3,
+          "n_bets": 670,
+          "accuracy": 0.49402985074626865,
+          "roi_per_unit": -0.056852103120759945
+        },
+        {
+          "min_edge": 4,
+          "n_bets": 496,
+          "accuracy": 0.5,
+          "roi_per_unit": -0.04545454545454547
+        },
+        {
+          "min_edge": 6,
+          "n_bets": 251,
+          "accuracy": 0.4860557768924303,
+          "roi_per_unit": -0.07207533502354219
+        }
+      ]
+    }
+  },
+  "sportsbook": {
+    "test_mse": 320.30339435545386,
+    "val_mse": 297.56531703590525,
+    "train_mse": 302.0866935483871
+  },
+  "naive_train_mean_test_mse": 558.7770781950112,
+  "best_model_by_validation": "Neural Network",
+  "history": {
+    "nn_best_epoch": 9,
+    "lstm_best_epoch": 13
+  },
+  "runtime_sec": 470
+}
