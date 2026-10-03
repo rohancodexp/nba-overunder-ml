@@ -59,7 +59,7 @@ Covers: loader pairing, **no look-ahead leakage** in features, chronological spl
 | Item | Choice |
 |---|---|
 | Target | total points (home + away) |
-| Split | train 2012-13..2015-16 (first season tuned), validation 2016-17, test 2017-18 (touched once) |
+| Split | train 2007-08..2015-16 (first season selected on validation), validation 2016-17, test 2017-18 (touched once) |
 | Features | last 3 games per team (points for/against, home/away, rest, opponent season-to-date strength), rest days, back-to-back, away streak, season-to-date averages, team one-hot |
 | Loss / metric | MSE; also MAE, Over/Under accuracy (+95% CI), ROI at -110 (break-even 52.38%) |
 | Parameters (learned) | tree splits; U, V factors; NN weights; LSTM gate weights |
@@ -71,6 +71,15 @@ Covers: loader pairing, **no look-ahead leakage** in features, chronological spl
 - **Optimiser settings:** the paper's lr = 1e-6 with weight decay = 1 on unscaled inputs is replaced by standardised inputs, Adam and tuned values.
 - **LSTM:** the gate equations printed in the paper are those of a GRU; the standard 4-gate LSTM is implemented because the problem statement asks for an LSTM.
 - **CF train error:** the paper reports train MSE 2.95; here train error is computed the same walk-forward way as test (no leakage), so it is comparable.
+
+### Final real-data split selection
+
+The first training season is treated as a data-level hyperparameter. Candidate starts
+(2007-08, 2009-10, 2011-12, 2012-13, 2013-14) are evaluated using validation MSE,
+while the final training period always ends at 2015-16. The 2007-08 start was selected
+for the final real-data run because it produced the lowest validation MSE (333.34)
+among the candidate starts. The 2016-17 season is reserved for validation and
+2017-18 is held out for the final test evaluation.
 
 ## 7. Repository layout
 
@@ -85,4 +94,3 @@ tests/                pytest suite           results/           metrics, logs, f
 report/writeup.pdf    PDF write-up           slides/deck.pptx   review deck
 team.json             names, SRNs, repo URL (edit before building report/slides)
 ```
-
