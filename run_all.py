@@ -66,9 +66,14 @@ def main():
     ls = LSTMRegressor(max_epochs=8 if a.quick else 80, patience=8, **best["lstm"]).fit(D["Q"][tr], D["S"][tr], y[tr], D["Q"][va], D["S"][va], y[va])
     cf = CFSVD(**best["cf"])
     P = {"Random Forest (baseline)": lambda m: rf.predict(D["X"][m]),
-         "Collaborative Filtering (SVD)": lambda m: cf.predict(df.loc[m, ["date", "home", "away"]], games),
-         "Neural Network": lambda m: nn.predict(D["Xs"][m]),
-         "LSTM": lambda m: ls.predict(D["Q"][m], D["S"][m])}
+     "Collaborative Filtering (SVD)": lambda m: cf.predict(df.loc[m, ["date", "home", "away"]], games),
+     "Neural Network": lambda m: nn.predict(D["Xs"][m]),
+     "LSTM": lambda m: ls.predict(D["Q"][m], D["S"][m]),
+     "NN+LSTM+RF Ensemble": lambda m: (
+         rf.predict(D["X"][m])
+         + nn.predict(D["Xs"][m])
+         + ls.predict(D["Q"][m], D["S"][m])
+     ) / 3.0}
 
     # 6. evaluate --------------------------------------------------------------------------
     metrics = {"data_source": a.data, "quick_mode": a.quick, "train_seasons": train_seasons, "val_seasons": C.VAL_SEASONS,
